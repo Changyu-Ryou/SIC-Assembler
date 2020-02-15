@@ -1,0 +1,103 @@
+Script started on Fri 29 Nov 2019 05:37:15 PM UTC
+]0;ubuntu@ubuntu: ~/GroupE[01;32mubuntu@ubuntu[00m:[01;34m~/GroupE[00m$ ls
+assemProg.txt  groupE.h  main.c  Makefile  optab.h  pass1.c  pass2.c
+]0;ubuntu@ubuntu: ~/GroupE[01;32mubuntu@ubuntu[00m:[01;34m~/GroupE[00m$ make
+make: Warning: File 'groupE.h' has modification time 26834 s in the future
+gcc -c -o main.o main.c -lm
+[01m[Kmain.c:[m[K In function ‘[01m[Kmain[m[K’:
+[01m[Kmain.c:21:2:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Kpass1[m[K’ [-Wimplicit-function-declaration]
+  pass1(sic, inputfile, filename,i,sa, opp, a);
+[01;32m[K  ^[m[K
+gcc -c -o pass1.o pass1.c -lm
+[01m[Kpass1.c:[m[K In function ‘[01m[Kpass1[m[K’:
+[01m[Kpass1.c:129:21:[m[K [01;35m[Kwarning: [m[Kcomparison between pointer and integer
+   if (*sic[k].label != NULL)
+[01;32m[K                     ^[m[K
+[01m[Kpass1.c:208:2:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Kpass2[m[K’ [-Wimplicit-function-declaration]
+  pass2(obj_filename, i, sa, opp, a);
+[01;32m[K  ^[m[K
+gcc -c -o pass2.o pass2.c -lm
+gcc -o proj main.o pass1.o pass2.o -lm 
+make: warning:  Clock skew detected.  Your build may be incomplete.
+]0;ubuntu@ubuntu: ~/GroupE[01;32mubuntu@ubuntu[00m:[01;34m~/GroupE[00m$ ls
+assemProg.txt  main.c  Makefile  pass1.c  pass2.c  [0m[01;32mproj[0m
+groupE.h       main.o  optab.h   pass1.o  pass2.o
+]0;ubuntu@ubuntu: ~/GroupE[01;32mubuntu@ubuntu[00m:[01;34m~/GroupE[00m$ ./proj assemProg.yt[K[Ktxt
+
+---file--- 
+5 COPY START 1000 COPY FILE
+10 FIRST STL RETADR SAVE RETURN ADDRESS
+15 CLOOP LDA LENGTH TEST FOR EOF
+20 COMP ZERO
+25 JEQ ENDFIL EXIT IF EOF FOUND
+30 J CLOOP LOOP
+35 ENDFIL LDA EOF INSERT END OF FILE
+40 STA BUFFER
+45 LDA THREE SET LENGTH = 3
+50 STA LENGTH
+55 LDL RETADR GET RETURN ADDRESS
+60 EOF BYTE C’EOF’
+65 THREE WORD 3
+70 ZERO WORD 0
+75 RETADR RESW 1
+80 LENGTH RESW 1 LENGTH OF RECORD
+85 BUFFER RESB 4096 4096-BYTE BUFFER
+90 END FIRST
+
+
+
+Program length = 1032 
+
+
+----Symbol Table---- 
+FIRST 	1000 
+CLOOP 	1003 
+ENDFIL 	100f 
+EOF 	101e 
+THREE 	1026 
+ZERO 	1029 
+RETADR 	102c 
+LENGTH 	102f 
+BUFFER 	1032 
+
+----OPTable---- 
+STL 	14 
+LDA 	00 
+COMP 	28 
+JEQ 	30 
+J 	3C 
+LDA 	00 
+STA 	0C 
+LDA 	00 
+STA 	0C 
+LDL 	08 
+
+----구조체 내용---- 
+1000	COPY	START	1000
+1000	FIRST	STL	RETADR
+1003	CLOOP	LDA	LENGTH
+1006		COMP	ZERO
+1009		JEQ	ENDFIL
+100c		J	CLOOP
+100f	ENDFIL	LDA	EOF
+1012		STA	BUFFER
+1015		LDA	THREE
+1018		STA	LENGTH
+101b		LDL	RETADR
+101e	EOF	BYTE	C’EOF’
+1026	THREE	WORD	3
+1029	ZERO	WORD	0
+102c	RETADR	RESW	1
+102f	LENGTH	RESW	1
+1032	BUFFER	RESB	4096
+2032		END	FIRST
+
+
+H^COPY^001000^001032
+T^001000^1e^14102c^00102f^281029^30100f^3C1003^00101e^0C1032^001026^0C102f^000000
+T^001026^06^000003^000000
+E^001000
+]0;ubuntu@ubuntu: ~/GroupE[01;32mubuntu@ubuntu[00m:[01;34m~/GroupE[00m$ exitr[K
+exit
+
+Script done on Fri 29 Nov 2019 05:37:55 PM UTC
